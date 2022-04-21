@@ -30,7 +30,8 @@ class TestPasswordChecker(TestCase):
         self.assertEqual(check_password('Qwerty123'), '''Weak password:
 - Password must contain at least one punctuation character (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
 - Password must be at least 14 characters long''')
-        self.assertEqual(check_password('The quick br0wn fox jumps 0ver the lazy d0g.'), 'Strong password')
+        self.assertEqual(check_password('The quick br0wn fox jumps 0ver the lazy d0g.'),
+                         'Strong password')
 
 
 if __name__ == '__main__':

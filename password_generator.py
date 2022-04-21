@@ -7,7 +7,7 @@ def generate_password(length: int = 14) -> str:
     from random import choice, choices, shuffle
     from string import ascii_lowercase, ascii_uppercase, digits, punctuation
     if length < 14:
-        raise ValueError
+        raise ValueError('Choose bigger length')
     password = choices(ascii_uppercase + ascii_lowercase + digits +
                        punctuation, k=length-4)
     required = list(map(choice, (ascii_uppercase, ascii_lowercase, digits,
