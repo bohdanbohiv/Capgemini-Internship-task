@@ -24,7 +24,7 @@ def check_password(password: str) -> str:
             '- Password must contain at least one punctuation character'
             f' ({punctuation})')
 
-    if len(password) < 14:
+    if not check_length(password):
         message.append('- Password must be at least 14 characters long')
 
     return '\n'.join(['Weak password:'] + message) if message else \
@@ -46,6 +46,10 @@ def contains_punctuation(password: str) -> bool:
     from string import punctuation
     return bool(search('[' + punctuation.replace('\\', '\\' * 3) + ']',
                        password))
+
+
+def check_length(password: str) -> bool:
+    return len(password) >= 14
 
 
 if __name__ == '__main__':

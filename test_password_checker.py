@@ -17,6 +17,10 @@ class TestPasswordChecker(TestCase):
         self.assertTrue(contains_punctuation('Pass the test, please'))
         self.assertFalse(contains_punctuation('qwerty'))
 
+    def test_check_length(self):
+        self.assertFalse(check_length('qwerty'))
+        self.assertTrue(check_length('0123456789abcd'))
+
     def test_check_password(self):
         self.assertEqual(check_password('qwerty'), '''Weak password:
 - Password must contain both lowercase and uppercase characters
