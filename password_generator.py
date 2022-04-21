@@ -13,7 +13,7 @@ def generate_password(length: int = 14) -> str:
     required = list(map(choice, (ascii_uppercase, ascii_lowercase, digits,
                                  punctuation)))
     shuffle(required)
-    for i in choices(range(length - 3), k=4):
+    for i in sorted(choices(range(length - 3), k=4), reverse=True):
         password.insert(i, required.pop())
     return ''.join(password)
 
