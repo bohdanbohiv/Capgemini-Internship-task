@@ -44,7 +44,8 @@ def contains_digits(password: str) -> bool:
 def contains_punctuation(password: str) -> bool:
     from re import search
     from string import punctuation
-    return bool(search(f'[{punctuation}]', password))
+    return bool(search('[' + punctuation.replace('\\', '\\' * 3) + ']',
+                       password))
 
 
 if __name__ == '__main__':
