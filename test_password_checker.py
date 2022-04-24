@@ -22,16 +22,25 @@ class TestPasswordChecker(TestCase):
         self.assertTrue(check_length('0123456789abcd'))
 
     def test_check_password(self):
-        self.assertEqual(check_password('qwerty'), '''Weak password:
-- Password must contain both lowercase and uppercase characters
-- Password must contain digits
-- Password must contain at least one punctuation character (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
-- Password must be at least 14 characters long''')
-        self.assertEqual(check_password('Qwerty123'), '''Weak password:
-- Password must contain at least one punctuation character (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
-- Password must be at least 14 characters long''')
-        self.assertEqual(check_password('The quick br0wn fox jumps 0ver the lazy d0g.'),
-                         'Strong password')
+        from string import punctuation
+        self.assertEqual(
+            check_password('qwerty'),
+            'Weak password:\n'
+            '- Password must contain both lowercase and uppercase characters\n'
+            '- Password must contain digits\n'
+            '- Password must contain at least one punctuation character '
+            f'({punctuation})\n'
+            '- Password must be at least 14 characters long')
+
+        self.assertEqual(
+            check_password('Qwerty123'),
+            'Weak password:\n'
+            '- Password must contain at least one punctuation character '
+            f'({punctuation})\n'
+            '- Password must be at least 14 characters long')
+
+        self.assertEqual(check_password('The quick br0wn fox jumps 0ver the '
+                                        'lazy d0g.'), 'Strong password')
 
 
 if __name__ == '__main__':
